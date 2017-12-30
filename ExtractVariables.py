@@ -54,7 +54,7 @@ def GetPrimerPositions(sequence, mismatch, primer):
                         if primer[j]!=shortsequence[j]:
                             count+=1
                             if count>mm:
-                                print("No Match found")
+                                #print("No Match found")
                                 break
                             else:
                                 continue
