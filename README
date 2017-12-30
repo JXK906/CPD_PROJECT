@@ -8,10 +8,10 @@ $ python/3.5.2 REST.py Glioblastoma TP53,PTEN,PIK3CA
 $ python/3.5.2 REST.py Breast\ Invasive\ Carcinoma TP53 
 
 This is an interface to cBioPortal to extract TCGA Mutation Data of particular Cancer for Gene(s). 
-Takes any cancer and gene into consideration and provides summary of number of unique AminoAcid_Change 
-per Gene. Output is created in the directory where command is executed.
+Takes any cancer and gene into consideration and provides summary of number of unique AminoAcid_Change per Gene. 
+Output is created in the directory where command is executed.
 
-For Extracting Unique Amino Acid Change, a Key "Chr:StartPosition-RefAllele-VariantAllele|Amino_Acid_Change" , was provided 
+A Key "Chr:StartPosition-RefAllele-VariantAllele|Amino_Acid_Change" , For Extracting Unique Amino Acid Change, was provided 
 for all locations to avoid neglecting any situation where Chr:Start-Ref-Var is different but Amino Acid change matches to other. 
 
 2. ExtractVariables.py
@@ -24,8 +24,8 @@ examples:
 $ python/3.5.2 ExtractVariables.py cpd.bed cpd.fasta 2
 $ python/3.5.2 ExtractVariables.py cpd.bed cpd.fasta 1
 
-This function extracts part of sequence excluding reverse and forward primers. As a result it provides a tab-delimited 
-file showing Sequence_with_Primers and Extracted_Sequence/Variable_after_Removing_Primers.
+This function extracts part of sequence excluding reverse and forward primers. As a result it provides a tab-delimited file 
+showing Sequence_with_Primers and Extracted_Sequence/Variable_after_Removing_Primers.
 
 It applies generic string match function GetPrimerPositions(sequence, mismatch, primer) which matches primer sequence 
 taking tolerance into consideration and provide primer positions based on which the sequence of interest is extracted.
