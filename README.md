@@ -1,2 +1,61 @@
 # CPD_PROJECT
 REST_Interface_cBioPortal and Extract_Sequence
+
+1. REST.py
+cmd: python/3.5.2 REST.py Cancer Genes
+examples:
+$ python/3.5.2 REST.py Glioblastoma TP53,PTEN,PIK3CA
+$ python/3.5.2 REST.py Breast\ Invasive\ Carcinoma TP53 
+
+This is an interface to cBioPortal to extract TCGA Mutation Data of particular Cancer for Gene(s). Takes any cancer and gene into consideration and provides summary of number of unique AminoAcid_Change per Gene. Output is created in the directory where command is executed.
+
+2. ExtractVariables.py
+cmd: python/3.5.2 ExtractVariables.py bed_file fasta_file Mismatch
+Input:
+    1. bed_file : Location of Tab-delimited file with 'chr','start','end','gene','fwd_primer','rev_primer' specified.
+    2. fasta_file: Location of Fasta format
+    3. Mismatch:  Mismatch Tolerance as required by user
+examples:
+$ python/3.5.2 ExtractVariables.py cpd.bed cpd.fasta 2
+$ python/3.5.2 ExtractVariables.py cpd.bed cpd.fasta 1
+
+This function extracts part of sequence excluding reverse and forward primers. As a result it provides a tab-delimited file showing Sequence_with_Primers and Extracted_Sequence/Variable_after_Removing_Primers.
+
+It applies generic string match function GetPrimerPositions(sequence, mismatch, primer) which matches primer sequence taking tolerance into consideration and provide primer positions based on which the sequence of interest is extracted.
+
+Basis:
+- If both primers do not match it considers the sequence as a variable itself
+- If only fwd primer matches it will extract sequence[endpos_fwd_primer:len(sequence)]
+- If only reverse primer matches it will extract sequence[0:startpos_rev_primer]
+- If both matched the function extracts sequence[endpos_fwd_primer:startpos_rev_primer]
+
+EndPos_FWD_Primer =  Last iterated position of FWD_primer -- #of Mismatched Bases in FWD_Primer 
+
+Catch:
+This function breaks as soon as it encounters a match + Mismatch_Tolerance.
+
+3. Extract_Variables(REGEX).py
+cmd: python Extract_Variables(REGEX).py bed_file fasta_file Mismatch
+Input:
+    1. bed-file: Location of bed_file in format 'chr','start','end','gene','fwd_primer','rev_primer'
+    2. fasta-file: Location of fasta file in format 
+        >1
+        ATGCATGAFGATGHAJ
+    3. Mismatch: Mismatch Tolerance as required by user
+examples:
+$ python/3.5.2 Extract_Variables\(REGEX\).py cpd.bed cpd.fasta 2
+$ python/3.5.2 Extract_Variables\(REGEX\).py cpd.bed cpd.fasta 1
+
+This function extracts part of sequence excluding reverse and forward primers. As a result it provides a tab-delimited file in format : 'Sequence','VariableString_Mimatch-0','VariableString_Mismatch-1','VariableString_Mismatch-2'.
+
+This function is it uses python REGEX and will provide list of sequence excluding primers until it reaches mismatch tolerance provided by user.
+
+Basis:
+- re.complie(primer).finditer(sequence)- provides (start,end) for FWD and REV primer.
+- If no primer does not match, Variable==Sequence[0:len(sequence)];
+- If FWD primer does not match, FWD_primer_end="BLANK" then variable = sequence[0:StartPosition_REV_Primer]
+- If REV primer does not match, REV_primer_end="BLANK" then variable = sequence[EndPosition_FWD_Primer:len(sequence)]
+- If both matches, variable=sequence[start:end]
+
+Catch:
+The function provides all possible strings at every Mismatch_Tolerance.
