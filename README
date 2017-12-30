@@ -7,9 +7,10 @@ examples:
 $ python/3.5.2 REST.py Glioblastoma TP53,PTEN,PIK3CA
 $ python/3.5.2 REST.py Breast\ Invasive\ Carcinoma TP53 
 
-This is an interface to cBioPortal to extract TCGA Mutation Data of particular Cancer for Gene(s). Takes any cancer and 
-gene into consideration and provides summary of number of unique AminoAcid_Change per Gene. Output is created in 
-the directory where command is executed.
+This is an interface to cBioPortal to extract TCGA Mutation Data of particular Cancer for Gene(s). 
+Takes any cancer and gene into consideration and provides summary of number of unique AminoAcid_Change 
+per Gene. Output is created in the directory where command is executed.
+
 For Extracting Unique Amino Acid Change, a Key "Chr:StartPosition-RefAllele-VariantAllele|Amino_Acid_Change" , was provided 
 for all locations to avoid neglecting any situation where Chr:Start-Ref-Var is different but Amino Acid change matches to other. 
 
