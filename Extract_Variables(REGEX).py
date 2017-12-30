@@ -79,7 +79,7 @@ def ExtractVariable_RegEx(bed_file, fasta_file, mismatch):
                     for i_0 in res1_mm.finditer(sequence):
                         st,end=i_0.span()
                         fwd.append(end)
-                        res2_mm=re.compile(prim2)
+                    res2_mm=re.compile(prim2)
                     for j_0 in res2_mm.finditer(sequence):
                         st,end = j_0.span()
                         rev.append(st)
