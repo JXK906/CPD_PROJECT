@@ -1,6 +1,10 @@
 # CPD_PROJECT
+##################################################
 REST_Interface_cBioPortal and Extract_Sequence
-
+IDE : Spyder
+References:  https://docs.python.org/3/library/urllib.html?highlight=urllib#module-urllib
+             https://stackoverflow.com
+###################################################
 1. REST.py
 cmd: python/3.5.2 REST.py Cancer Genes
 examples:
