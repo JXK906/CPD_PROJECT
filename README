@@ -35,7 +35,7 @@ It applies generic string match function GetPrimerPositions(sequence, mismatch, 
 taking tolerance into consideration and provide primer positions based on which the sequence of interest is extracted.
 
 Basis:
-- If both primers do not match it considers the sequence as a variable itself
+- If both primers do not match until the mismatch tolerance exceeds, it considers the sequence as a variable itself
 - If only fwd primer matches it will extract sequence[endpos_fwd_primer:len(sequence)]
 - If only reverse primer matches it will extract sequence[0:startpos_rev_primer]
 - If both matched the function extracts sequence[endpos_fwd_primer:startpos_rev_primer]
@@ -43,7 +43,7 @@ Basis:
 EndPos_FWD_Primer =  Last iterated position of FWD_primer -- #of Mismatched Bases in FWD_Primer 
 
 Catch:
-This function breaks as soon as it encounters a match + Mismatch_Tolerance.
+This function breaks as soon as it encounters a match + Mismatch_Tolerance (<=Mismatch) and if Match>Mismatch.
 
 3. Extract_Variables(REGEX).py
 cmd: python Extract_Variables(REGEX).py bed_file fasta_file Mismatch
@@ -65,7 +65,7 @@ tolerance provided by user.
 
 Basis:
 - re.complie(primer).finditer(sequence)- provides (start,end) for FWD and REV primer.
-- If no primer does not match, Variable==Sequence[0:len(sequence)];
+- If no primer match at given tolerance, Variable==Sequence[0:len(sequence)];
 - If FWD primer does not match, FWD_primer_end="BLANK" then variable = sequence[0:StartPosition_REV_Primer]
 - If REV primer does not match, REV_primer_end="BLANK" then variable = sequence[EndPosition_FWD_Primer:len(sequence)]
 - If both matches, variable=sequence[start:end]
