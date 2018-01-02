@@ -88,7 +88,7 @@ def REST(Cancer,Genes):
     df_uniq = df.from_records(uniqueAA_Change, columns=['Gene','#Unique_AminoAcid_Change'])
     df_uniq.to_csv("Summary_AminoAcid_Change.txt", sep="\t", index=False)
 
-REST("Glioblastoma",'TP53')   
+#REST("Glioblastoma",'TP53')   
 if __name__=="__main__":
     Cancer=sys.argv[1]
     Genes = sys.argv[2]
