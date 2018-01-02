@@ -64,7 +64,7 @@ This function is it uses python REGEX and will provide list of sequence excludin
 tolerance provided by user.
 
 Basis:
-- re.complie(primer).finditer(sequence)- provides (start,end) for FWD and REV primer.
+- re.compile(primer).finditer(sequence)- provides (start,end) for FWD and REV primer.
 - If no primer match at given tolerance, Variable==Sequence[0:len(sequence)];
 - If FWD primer does not match, FWD_primer_end="BLANK" then variable = sequence[0:StartPosition_REV_Primer]
 - If REV primer does not match, REV_primer_end="BLANK" then variable = sequence[EndPosition_FWD_Primer:len(sequence)]
